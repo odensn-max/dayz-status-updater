@@ -4,18 +4,17 @@ Concu pour etre lance par GitHub Actions toutes les 5 minutes.
 
 Ecrit dans la table site_data (cle "site:servers"), le meme
 emplacement que celui gere par le panel admin du site — index.html
-lit deja cette cle directement, aucune modification du site necessaire.
+lit deja cette cle directement, aucune modification du site necessaire
+(en dehors de l'affichage optionnel des joueurs, voir carte).
 """
 
 import os
-import json
 import a2s
 from supabase import create_client
 
 # ─── CONFIG ─────────────────────────────────────────────────────────────
 
 SUPABASE_URL = "https://qhnsizbrnwclsdebpbor.supabase.co"
-# Lu depuis un secret GitHub (Settings > Secrets and variables > Actions)
 SUPABASE_SERVICE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 
 DAYZ_SERVERS = [
@@ -32,7 +31,7 @@ supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
 
 def query_dayz(server):
     """Renvoie un objet au format attendu par la fonction card() de index.html :
-       { name, game, ip, port, status, map }"""
+       { name, game, ip, port, status, map, players, maxPlayers }"""
     try:
         info = a2s.info((server["ip"], server["query_port"]), timeout=5)
         return {
@@ -42,6 +41,8 @@ def query_dayz(server):
             "port": server["game_port"],
             "status": "online",
             "map": info.map_name,
+            "players": info.player_count,
+            "maxPlayers": info.max_players,
         }
     except Exception:
         return {
@@ -51,6 +52,8 @@ def query_dayz(server):
             "port": server["game_port"],
             "status": "offline",
             "map": None,
+            "players": 0,
+            "maxPlayers": None,
         }
 
 
@@ -64,7 +67,7 @@ def main():
         }).execute()
         print(f"[ok] site:servers mis a jour avec {len(servers)} serveurs")
         for s in servers:
-            print(f"     - {s['name']}: {s['status']} ({s['map']})")
+            print(f"     - {s['name']}: {s['status']} ({s['players']}/{s['maxPlayers']} joueurs, {s['map']})")
     except Exception as e:
         print(f"[erreur supabase] {e}")
         raise
