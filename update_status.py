@@ -20,10 +20,10 @@ SUPABASE_URL = "https://qhnsizbrnwclsdebpbor.supabase.co"
 SUPABASE_SERVICE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 
 DAYZ_SERVERS = [
-    {"name": "Chernarus - Vanilla", "ip": "82.66.186.234", "query_port": 2403, "game_port": 2402},
-    {"name": "Takistan",            "ip": "82.66.186.234", "query_port": 2503, "game_port": 2502},
-    {"name": "Namalsk",             "ip": "82.66.186.234", "query_port": 2603, "game_port": 2602},
-    {"name": "Deerisle v6 No Mods", "ip": "82.66.186.234", "query_port": 2703, "game_port": 2702},
+    {"name": "1363 | EUROPE - FR | CHERNARUS - VANILLA", "ip": "82.66.186.234", "query_port": 2403, "game_port": 2402},
+    {"name": "1363 | EUROPE - FR | TAKISTAN",            "ip": "82.66.186.234", "query_port": 2503, "game_port": 2502},
+    {"name": "1363 | EUROPE - FR | NAMALSK",             "ip": "82.66.186.234", "query_port": 2603, "game_port": 2602},
+    {"name": "1363 | EUROPE - FR | DEERISLE v6 - VANILLA - No Mods", "ip": "82.66.186.234", "query_port": 2703, "game_port": 2702},
     {"name": "Bitteroot - Vanilla", "ip": "82.66.186.234", "query_port": 2303, "game_port": 2302},
 ]
 
