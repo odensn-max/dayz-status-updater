@@ -1,11 +1,12 @@
 """
 update_status.py — execute une seule fois puis s'arrete.
-Concu pour etre lance par GitHub Actions toutes les 5 minutes.
+Concu pour etre lance par GitHub Actions (declenche par cron-job.org
+toutes les minutes via workflow_dispatch, et par le cron GitHub natif
+toutes les 5 minutes en filet de securite).
 
 Ecrit dans la table site_data (cle "site:servers"), le meme
 emplacement que celui gere par le panel admin du site — index.html
-lit deja cette cle directement, aucune modification du site necessaire
-(en dehors de l'affichage optionnel des joueurs, voir carte).
+lit deja cette cle directement, aucune modification du site necessaire.
 """
 
 import os
@@ -18,10 +19,11 @@ SUPABASE_URL = "https://qhnsizbrnwclsdebpbor.supabase.co"
 SUPABASE_SERVICE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 
 DAYZ_SERVERS = [
-    {"name": "1363 | EUROPE - FR | CHERNARUS - VANILLA", "ip": "82.66.186.234", "query_port": 2403, "game_port": 2402},
-    {"name": "1363 | EUROPE - FR | TAKISTAN",            "ip": "82.66.186.234", "query_port": 2503, "game_port": 2502},
-    {"name": "1363 | EUROPE - FR | NAMALSK",             "ip": "82.66.186.234", "query_port": 2603, "game_port": 2602},
-    {"name": "1363 | EUROPE - FR | DEERISLE v6 - VANILLA - No Mods", "ip": "82.66.186.234", "query_port": 2703, "game_port": 2702},
+    {"name": "Chernarus - Vanilla", "ip": "82.66.186.234", "query_port": 2403, "game_port": 2402},
+    {"name": "Takistan",            "ip": "82.66.186.234", "query_port": 2503, "game_port": 2502},
+    {"name": "Namalsk",             "ip": "82.66.186.234", "query_port": 2603, "game_port": 2602},
+    {"name": "Deerisle v6 No Mods", "ip": "82.66.186.234", "query_port": 2703, "game_port": 2702},
+    {"name": "Bitteroot - Vanilla", "ip": "82.66.186.234", "query_port": 2303, "game_port": 2302},
 ]
 
 # ─── SUPABASE ───────────────────────────────────────────────────────────
