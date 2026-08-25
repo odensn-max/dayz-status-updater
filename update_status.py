@@ -27,14 +27,6 @@ DAYZ_SERVERS = [
     {"name": "Bitteroot - Vanilla", "ip": "82.66.186.234", "query_port": 2303, "game_port": 2302},
 ]
 
-ACEVO_SERVER = {
-    "name": "ALL CARS - Nurburgring Touristenfahrten - 1363 Community",
-    "ip": "82.66.186.234",
-    "http_port": 8080,
-    "game_port": 9700,
-    "max_players": 50,
-}
-
 # ─── SUPABASE ───────────────────────────────────────────────────────────
 
 supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
@@ -66,40 +58,6 @@ def query_dayz(server):
             "players": 0,
             "maxPlayers": None,
         }
-
-
-def query_acevo(server):
-    """Interroge l'API HTTP du serveur Assetto Corsa EVO.
-       Renvoie le meme format que query_dayz pour que le front-end
-       puisse traiter les deux jeux de facon uniforme."""
-    url = f"http://{server['ip']}:{server['http_port']}/"
-    try:
-        resp = requests.get(url, timeout=5)
-        if resp.status_code == 200:
-            data = resp.json()
-            player_count = data.get("clients", 0)
-            return {
-                "name": server["name"],
-                "game": "assetto",
-                "ip": server["ip"],
-                "port": server["game_port"],
-                "status": "online",
-                "map": None,
-                "players": player_count,
-                "maxPlayers": server["max_players"],
-            }
-    except Exception:
-        pass
-    return {
-        "name": server["name"],
-        "game": "assetto",
-        "ip": server["ip"],
-        "port": server["game_port"],
-        "status": "offline",
-        "map": None,
-        "players": 0,
-        "maxPlayers": server["max_players"],
-    }
 
 
 def main():
