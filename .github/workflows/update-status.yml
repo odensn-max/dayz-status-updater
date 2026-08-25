@@ -20,5 +20,3 @@ jobs:
         env:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: python update_status.py
-      - name: TEST temporaire port farming
-        run: python test_farming_endpoint.py
