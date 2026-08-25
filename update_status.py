@@ -23,7 +23,7 @@ DAYZ_SERVERS = [
     {"name": "Takistan",            "ip": "82.66.186.234", "query_port": 2503, "game_port": 2502},
     {"name": "Namalsk",             "ip": "82.66.186.234", "query_port": 2603, "game_port": 2602},
     {"name": "Deerisle v6 No Mods", "ip": "82.66.186.234", "query_port": 2703, "game_port": 2702},
-    {"name": "Bitteroot - Vanilla", "ip": "82.66.186.234", "query_port": 2303, "game_port": 2302},
+    {"name": "1363 | EUROPE - FR | BITTERROOT - VANILLA", "ip": "82.66.186.234", "query_port": 2303, "game_port": 2302},
 ]
 
 # ─── SUPABASE ───────────────────────────────────────────────────────────
