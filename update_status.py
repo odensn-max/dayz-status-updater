@@ -62,7 +62,6 @@ def query_dayz(server):
 
 def main():
     servers = [query_dayz(s) for s in DAYZ_SERVERS]
-    servers.append(query_acevo(ACEVO_SERVER))
 
     try:
         supabase.table("site_data").upsert({
