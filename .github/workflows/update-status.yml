@@ -16,7 +16,7 @@ jobs:
           python-version: "3.11"
       - name: Installer les dependances
         run: pip install -r requirements.txt
-      - name: Mettre a jour Supabase
+      - name: Envoyer le statut au site
         env:
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          SERVERS_TOKEN: ${{ secrets.SERVERS_TOKEN }}
         run: python update_status.py
